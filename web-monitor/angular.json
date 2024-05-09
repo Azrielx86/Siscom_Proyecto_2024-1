@@ -94,6 +94,16 @@
             ],
             "scripts": []
           }
+        },
+        "deploy": {
+          "builder": "@angular/fire:deploy",
+          "options": {
+            "prerender": false,
+            "ssr": false,
+            "browserTarget": "web-monitor:build:production",
+            "firebaseProject": "siscom2024-1",
+            "firebaseHostingSite": "siscom2024-1"
+          }
         }
       }
     }
