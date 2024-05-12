@@ -1,0 +1,14 @@
+{
+  "targets": {
+    "siscom2024-1": {
+      "hosting": {
+        "web-monitor": [
+          "siscom2024-1"
+        ]
+      }
+    }
+  },
+  "projects": {
+    "default": "siscom2024-1"
+  }
+}

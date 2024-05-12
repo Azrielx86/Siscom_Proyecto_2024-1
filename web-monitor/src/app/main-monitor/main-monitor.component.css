@@ -1,0 +1,5 @@
+.time-button {
+  @apply bg-gray-400 rounded-xl px-3 py-1.5 my-1 mx-1
+  hover:bg-gray-500
+  font-medium
+}
