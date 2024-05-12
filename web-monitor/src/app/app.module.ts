@@ -13,7 +13,6 @@ import {DevicesService} from "./services/devices.service";
 import {AngularFireModule} from "@angular/fire/compat";
 import {AngularFireDatabaseModule} from "@angular/fire/compat/database";
 import { DeviceMonitorComponent } from './device-monitor/device-monitor.component';
-import { provideFirestore,getFirestore } from '@angular/fire/firestore';
 
 @NgModule({
   declarations: [
@@ -29,8 +28,7 @@ import { provideFirestore,getFirestore } from '@angular/fire/firestore';
     AngularFireDatabaseModule,
     provideFirebaseApp(() => initializeApp(environment.firebase)),
     provideAuth(() => getAuth()),
-    provideDatabase(() => getDatabase()),
-    provideFirestore(() => getFirestore())
+    provideDatabase(() => getDatabase())
   ],
   providers: [DevicesService],
   bootstrap: [AppComponent]
