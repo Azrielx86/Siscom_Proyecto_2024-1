@@ -1,8 +1,9 @@
 import {Component, OnInit} from '@angular/core';
-import {Period} from "../typings/Period";
-import {DevicesService} from "../services/devices.service";
-import {Device, Measures} from "../models/Device";
+import {Period} from "../../typings/Period";
+import {DevicesService} from "../../services/devices.service";
+import {Device, Measures} from "../../models/Device";
 import {Observable} from "rxjs";
+import {ActivatedRoute, Router} from "@angular/router";
 
 @Component({
   selector: 'app-main-monitor',
@@ -13,11 +14,15 @@ export class MainMonitorComponent implements OnInit {
   selectedPeriod: string = "";
   devices: Device[] = [];
 
-  constructor(private devicesService: DevicesService) {
+  constructor(
+    private route: ActivatedRoute,
+    private router: Router,
+    private devicesService: DevicesService
+  ) {
   }
 
   ngOnInit(): void {
-    this.devicesService.getItems().subscribe(devices => {
+    this.devicesService.getDevices().subscribe(devices => {
       this.devices = devices
     });
   }
@@ -25,6 +30,11 @@ export class MainMonitorComponent implements OnInit {
   changePeriod = (period: Period) => {
     console.log(`Changing to ${period}`);
     this.selectedPeriod = period;
+  }
+
+  goToDevice = async (device: Device) => {
+    const device_id = device ? device.id : null;
+    await this.router.navigate(['/device', {id: device_id}]);
   }
 
   protected readonly Period = Period;

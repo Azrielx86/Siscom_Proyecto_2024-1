@@ -14,7 +14,7 @@ export class DevicesService {
     this.devicesCollection = this.db.collection('devices', ref => ref.orderBy('device_name', 'asc'));
   }
 
-  getItems = (): Observable<Device[]> => {
+  getDevices = (): Observable<Device[]> => {
     return this.devicesCollection.snapshotChanges().pipe(
       map(changes => {
         return changes.map(a => {
@@ -26,12 +26,30 @@ export class DevicesService {
     );
   }
 
+  getDevice = (device_id: string): Observable<Device | undefined> => {
+    const document = this.devicesCollection.doc<Device>(`${device_id}`)
+    return document.snapshotChanges().pipe(
+      map(action => {
+        if (!action.payload.exists) return undefined;
+        const data = action.payload.data() as Device;
+        data.id = action.payload.id;
+        return data;
+      })
+    );
+  }
+
   getDeviceMeasures = (device_id: string): Observable<Measures[]> => {
     const document = this.devicesCollection.doc<Device>(`${device_id}`);
-    return document.collection('measures').snapshotChanges().pipe(
+    return document.collection('measures',
+      ref =>
+        ref
+          .orderBy("date", "asc")).snapshotChanges().pipe(
       map(action =>
-        action.map(a =>
-          a.payload.doc.data() as Measures
+        action.map(a => {
+            const m = a.payload.doc.data() as Measures;
+            m.formatedDate = m.date.toDate();
+            return m;
+          }
         )
       )
     );

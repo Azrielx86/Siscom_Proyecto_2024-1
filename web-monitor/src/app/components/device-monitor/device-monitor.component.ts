@@ -1,7 +1,7 @@
 import {Component, Input, OnInit} from '@angular/core';
 import {Observable} from "rxjs";
-import {Device, Measures} from "../models/Device";
-import {DevicesService} from "../services/devices.service";
+import {Device, Measures} from "../../models/Device";
+import {DevicesService} from "../../services/devices.service";
 
 @Component({
   selector: 'app-device-monitor',
@@ -18,6 +18,7 @@ export class DeviceMonitorComponent implements OnInit {
   ngOnInit(): void {
     this.db.getDeviceMeasures(this.device.id).subscribe(measures => {
       this.measures = measures;
+      console.log(measures);
     });
   }
 }

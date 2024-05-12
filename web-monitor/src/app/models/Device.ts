@@ -1,3 +1,5 @@
+import {Timestamp} from "firebase/firestore"
+
 export interface Device {
   id: string;
   device_name: string;
@@ -5,7 +7,8 @@ export interface Device {
 }
 
 export interface Measures {
-  date: string;
+  date: Timestamp;
+  formatedDate: Date;
   temperature: number;
   humidity: number;
 }
