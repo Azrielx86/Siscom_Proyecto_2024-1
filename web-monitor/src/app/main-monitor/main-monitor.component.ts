@@ -1,5 +1,8 @@
 import {Component, OnInit} from '@angular/core';
 import {Period} from "../typings/Period";
+import {DevicesService} from "../services/devices.service";
+import {Device, Measures} from "../models/Device";
+import {Observable} from "rxjs";
 
 @Component({
   selector: 'app-main-monitor',
@@ -8,10 +11,15 @@ import {Period} from "../typings/Period";
 })
 export class MainMonitorComponent implements OnInit {
   selectedPeriod: string = "";
-  constructor() {
+  devices: Device[] = [];
+
+  constructor(private devicesService: DevicesService) {
   }
 
   ngOnInit(): void {
+    this.devicesService.getItems().subscribe(devices => {
+      this.devices = devices
+    });
   }
 
   changePeriod = (period: Period) => {
@@ -20,4 +28,5 @@ export class MainMonitorComponent implements OnInit {
   }
 
   protected readonly Period = Period;
+  protected readonly JSON = JSON;
 }

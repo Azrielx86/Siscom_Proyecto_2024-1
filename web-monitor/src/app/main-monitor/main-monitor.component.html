@@ -1,9 +1,15 @@
 <div>
-  <div class="bg-gray-600 p-2 rounded-2xl flex flex-row flex-grow lg:max-w-xl">
-    <button class="time-button grow" (click)="changePeriod(Period.TODAY)">Hoy</button>
-    <button class="time-button grow" (click)="changePeriod(Period.WEEK)">Semana</button>
-    <button class="time-button grow" (click)="changePeriod(Period.MONTH)">Mes</button>
+  <div>
+    <div class="bg-gray-600 p-2 rounded-2xl flex flex-row flex-grow lg:max-w-xl">
+      <button class="time-button grow" (click)="changePeriod(Period.TODAY)">Hoy</button>
+      <button class="time-button grow" (click)="changePeriod(Period.WEEK)">Semana</button>
+      <button class="time-button grow" (click)="changePeriod(Period.MONTH)">Mes</button>
+    </div>
+  </div>
+
+  <p class="dark:text-white">Selected: {{ selectedPeriod }}</p>
+
+  <div *ngFor="let device of this.devices">
+    <app-device-monitor [device]="device"></app-device-monitor>
   </div>
 </div>
-
-<p class="dark:text-white">Selected: {{ selectedPeriod }}</p>
