@@ -1,7 +1,7 @@
 import {Injectable} from '@angular/core';
 import {map, Observable} from "rxjs";
+import {Device, Measure} from "../models/Device";
 import {AngularFirestore, AngularFirestoreCollection} from "@angular/fire/compat/firestore";
-import {Device, Measures} from "../models/Device";
 
 @Injectable({
   providedIn: 'root'
@@ -38,7 +38,7 @@ export class DevicesService {
     );
   }
 
-  getDeviceMeasures = (device_id: string): Observable<Measures[]> => {
+  getDeviceMeasures = (device_id: string): Observable<Measure[]> => {
     const document = this.devicesCollection.doc<Device>(`${device_id}`);
     return document.collection('measures',
       ref =>
@@ -46,7 +46,7 @@ export class DevicesService {
           .orderBy("date", "asc")).snapshotChanges().pipe(
       map(action =>
         action.map(a => {
-            const m = a.payload.doc.data() as Measures;
+            const m = a.payload.doc.data() as Measure;
             m.formatedDate = m.date.toDate();
             return m;
           }

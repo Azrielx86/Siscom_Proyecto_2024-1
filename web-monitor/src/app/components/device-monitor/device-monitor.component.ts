@@ -1,7 +1,8 @@
-import {Component, Input, OnInit} from '@angular/core';
-import {Observable} from "rxjs";
-import {Device, Measures} from "../../models/Device";
+import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
+import {Device, Measure} from "../../models/Device";
 import {DevicesService} from "../../services/devices.service";
+import {data} from "autoprefixer";
+import {map, Observable} from "rxjs";
 
 @Component({
   selector: 'app-device-monitor',
@@ -10,15 +11,30 @@ import {DevicesService} from "../../services/devices.service";
 })
 export class DeviceMonitorComponent implements OnInit {
   @Input() device!: Device;
-  measures: Measures[] = [];
+  measuresObservable!: Observable<Measure[]>;
+  temperature!: Observable<any[]>;
+  humidity!: Observable<any[]>;
+  measures: Measure[] = [];
 
   constructor(private db: DevicesService) {
   }
 
   ngOnInit(): void {
-    this.db.getDeviceMeasures(this.device.id).subscribe(measures => {
+    this.measuresObservable = this.db.getDeviceMeasures(this.device.id);
+    this.measuresObservable.subscribe(measures => {
       this.measures = measures;
-      console.log(measures);
     });
+    this.temperature = this.measuresObservable.pipe(
+      map(m => m.map(d => {
+        return {date: d.formatedDate, value: d.temperature};
+      }))
+    );
+    this.humidity = this.measuresObservable.pipe(
+      map(m => m.map(d => {
+        return {date: d.formatedDate, value: d.humidity};
+      }))
+    );
   }
+
+  protected readonly data = data;
 }

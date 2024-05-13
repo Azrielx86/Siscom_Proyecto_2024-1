@@ -1,6 +1,7 @@
 <div class="container">
   <div>
-    <span class="font-bold text-lg dark:text-white">{{ device.device_name }}</span>
+    <p class="font-bold text-3xl dark:text-white">{{ device.device_name }}</p>
+    <p class="text-lg dark:text-white">Lugar: {{ device.location }}</p>
   </div>
   <div>
     <app-device-monitor [device]="device"></app-device-monitor>

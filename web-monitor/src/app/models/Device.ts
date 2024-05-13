@@ -6,7 +6,7 @@ export interface Device {
   location: string;
 }
 
-export interface Measures {
+export interface Measure {
   date: Timestamp;
   formatedDate: Date;
   temperature: number;

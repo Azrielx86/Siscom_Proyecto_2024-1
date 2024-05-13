@@ -1,7 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {Period} from "../../typings/Period";
 import {DevicesService} from "../../services/devices.service";
-import {Device, Measures} from "../../models/Device";
+import {Device, Measure} from "../../models/Device";
 import {Observable} from "rxjs";
 import {ActivatedRoute, Router} from "@angular/router";
 
