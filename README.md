@@ -9,6 +9,7 @@ Link a la aplicación web: [WebMonitor](https://siscom2024-1.web.app)
 
 ## Dispositivo recomendado
 * ESP32 DOIT Devkit V1
+  * Diseño compatible con este proyecto: [esp32_firebase](https://github.com/Azrielx86/esp32_firebase)
 
 ## Rutas de los sensores en Firestore
 * `/devices/<device_id>/measures/temperature`
