@@ -1,9 +1,42 @@
-<div class="container">
-  <div>
-    <p class="font-bold text-3xl dark:text-white">{{ device.device_name }}</p>
-    <p class="text-lg dark:text-white">Lugar: {{ device.location }}</p>
-  </div>
-  <div>
-    <app-device-monitor [device]="device"></app-device-monitor>
+<div class="container bg-gray-900">
+  <div *ngIf="device | async as d">
+    <div>
+      <p class="font-bold text-3xl dark:text-white">{{ d.device_name }}</p>
+      <div class="text-lg dark:text-white mt-2 items-center">
+        <i-feather name="map-pin"></i-feather>
+        <span>{{ d.location }}</span>
+      </div>
+      <div class="dark:bg-gray-800 rounded-md p-2 my-4">
+        <div>
+          <i-feather class="text-white mr-2" name="zap"></i-feather>
+          <span class="text-lg dark:text-white font-bold">Actuadores</span>
+        </div>
+
+        <div class="font-medium dark:text-white">
+          <div>
+            <span>Ventilador: </span>
+            <span
+              class="{{ triggers?.start_fan ? 'text-jungle-green-600' : 'text-red-500' }}"
+            >{{ triggers?.start_fan ? "Encendido" : "Apagado" }}</span>
+          </div>
+        </div>
+
+        <div class="font-medium dark:text-white">
+          <div>
+            <span>Humificador: </span>
+            <span
+              class="{{ triggers?.start_humidifier ? 'text-jungle-green-600' : 'text-red-500' }}"
+            >{{ triggers?.start_humidifier ? "Encendido" : "Apagado" }}</span>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="dark:bg-gray-800 rounded-md p-2 my-4">
+      <div>
+        <i-feather class="text-white mr-2" name="activity"></i-feather>
+        <span class="text-lg dark:text-white font-bold">Métricas en la última hora</span>
+      </div>
+      <app-device-monitor [device]="d"></app-device-monitor>
+    </div>
   </div>
 </div>

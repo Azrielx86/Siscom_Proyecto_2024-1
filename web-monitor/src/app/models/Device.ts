@@ -4,6 +4,7 @@ export interface Device {
   id: string;
   device_name: string;
   location: string;
+  type: string;
 }
 
 export interface Measure {

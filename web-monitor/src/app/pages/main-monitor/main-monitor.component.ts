@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {AfterViewInit, Component, OnInit} from '@angular/core';
 import {Period} from "../../typings/Period";
 import {DevicesService} from "../../services/devices.service";
 import {Device, Measure} from "../../models/Device";

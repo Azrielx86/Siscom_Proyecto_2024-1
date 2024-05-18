@@ -14,9 +14,12 @@ import {AngularFireModule} from "@angular/fire/compat";
 import {AngularFireDatabaseModule} from "@angular/fire/compat/database";
 import {DeviceMonitorComponent} from './components/device-monitor/device-monitor.component';
 import {DevicePageComponent} from './pages/device-page/device-page.component';
-import { ChartComponent } from './components/chart/chart.component';
-import { provideFirestore,getFirestore } from '@angular/fire/firestore';
+import {ChartComponent} from './components/chart/chart.component';
+import {provideFirestore, getFirestore} from '@angular/fire/firestore';
 import {NgxEchartsModule} from "ngx-echarts";
+import {FeatherModule} from "angular-feather";
+import { allIcons } from 'angular-feather/icons';
+import { AboutComponent } from './pages/about/about.component';
 
 @NgModule({
   declarations: [
@@ -25,7 +28,8 @@ import {NgxEchartsModule} from "ngx-echarts";
     DashboardComponent,
     DeviceMonitorComponent,
     DevicePageComponent,
-    ChartComponent
+    ChartComponent,
+    AboutComponent
   ],
   imports: [
     BrowserModule,
@@ -38,7 +42,8 @@ import {NgxEchartsModule} from "ngx-echarts";
     provideFirestore(() => getFirestore()),
     NgxEchartsModule.forRoot({
       echarts: () => import('echarts')
-    })
+    }),
+    FeatherModule.pick(allIcons)
   ],
   providers: [DevicesService],
   bootstrap: [AppComponent]
