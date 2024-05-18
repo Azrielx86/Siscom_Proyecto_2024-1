@@ -25,7 +25,11 @@
             "styles": [
               "src/styles.css"
             ],
-            "scripts": []
+            "scripts": [],
+            "allowedCommonJsDependencies": [
+              "feather-icons",
+              "autoprefixer"
+            ]
           },
           "configurations": {
             "production": {
@@ -98,11 +102,8 @@
         "deploy": {
           "builder": "@angular/fire:deploy",
           "options": {
-            "prerender": false,
-            "ssr": false,
-            "browserTarget": "web-monitor:build:production",
-            "firebaseProject": "siscom2024-1",
-            "firebaseHostingSite": "siscom2024-1"
+            "version": 2,
+            "browserTarget": "web-monitor:build:production"
           }
         }
       }
