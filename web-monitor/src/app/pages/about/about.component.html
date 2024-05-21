@@ -1,15 +1,15 @@
 <div class="container">
 
-  <div class="flex flex-col justify-center p-4 m-4 bg-gray-800 rounded-md dark:text-white items-center">
+  <div class="flex flex-col justify-center p-4 m-4 bg-gray-800 rounded-md dark:text-white items-center text-center">
     <span class="text-2xl">Universidad Nacional Autónoma de México</span>
     <span class="text-2xl">Facultad de Ingeniería</span>
     <span class="text-lg">Semestre 2024-1</span>
     <span class="text-xl">Sistemas de Comunicaciones</span>
   </div>
-  <div class="flex flex-col justify-center p-4 m-4 bg-gray-800 rounded-md dark:text-white items-center">
+  <div class="flex flex-col justify-center p-6 m-4 bg-gray-800 rounded-md dark:text-white items-center">
         <span class="text-xl font-bold">Integrantes del equipo</span>
     <ul class="list-disc">
-      <li *ngFor="let t of teammates">
+      <li class="font-medium text-balance" *ngFor="let t of teammates">
         {{ t.name }}
       </li>
     </ul>
